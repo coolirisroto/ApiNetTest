@@ -2,12 +2,11 @@
 using Microsoft.AspNetCore.Mvc;
 using Model;
 using Service;
-using System.Collections;
-using System.Collections.Generic;
+using System;
+using System.Diagnostics;
 
 namespace Api3.Controllers
 {
-    [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
 
@@ -19,13 +18,17 @@ namespace Api3.Controllers
         public StudentsController(IStudentService studentService)
         {
             _studentService = studentService;
+            Console.WriteLine("Students stdens");
+            Debug.WriteLine("hahahdahsdhasdhahsdhas");
         }
         // GET api/values
         // GET: api/<controller>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IActionResult Get()
         {
-            return new string[] { "item1", "item2" };
+            return Ok(
+                _studentService.GetAll()
+            );
         }
 
         // GET api/values/5
